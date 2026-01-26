@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/theme-provider";
+import { GamesProvider } from "@/contexts/games-context";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Tabs as WebTabs } from "expo-router/tabs";
 import {
@@ -17,6 +18,7 @@ export default function Layout() {
 
   return (
     <ThemeProvider>
+      <GamesProvider>
       {process.env.EXPO_OS === "web" ? (
         <WebTabs
           screenOptions={{
@@ -33,46 +35,47 @@ export default function Layout() {
           }}
         >
           <WebTabs.Screen
-            name="(index)"
+            name="(library)"
             options={{
-              title: "Home",
-              tabBarIcon: (props) => <MaterialIcons {...props} name="home" />,
+              title: "Library",
+              tabBarIcon: (props) => <MaterialIcons {...props} name="library-books" />,
             }}
           />
           <WebTabs.Screen
-            name="(info)"
+            name="(backlog)"
             options={{
-              title: "Info",
-              tabBarIcon: (props) => <MaterialIcons {...props} name="info" />,
+              title: "Backlog",
+              tabBarIcon: (props) => <MaterialIcons {...props} name="queue" />,
             }}
           />
         </WebTabs>
       ) : (
         <NativeTabs>
-          <NativeTabs.Trigger name="(index)">
-            <Label>Home</Label>
+          <NativeTabs.Trigger name="(library)">
+            <Label>Library</Label>
             <Icon
               {...Platform.select({
-                ios: { sf: { default: "house", selected: "house.fill" } },
+                ios: { sf: { default: "books.vertical", selected: "books.vertical.fill" } },
                 default: {
-                  src: <VectorIcon family={MaterialIcons} name="home" />,
+                  src: <VectorIcon family={MaterialIcons} name="library-books" />,
                 },
               })}
             />
           </NativeTabs.Trigger>
-          <NativeTabs.Trigger name="(info)">
-            <Label>Info</Label>
+          <NativeTabs.Trigger name="(backlog)">
+            <Label>Backlog</Label>
             <Icon
               {...Platform.select({
-                ios: { sf: "cursorarrow.rays" },
+                ios: { sf: { default: "clock", selected: "clock.fill" } },
                 default: {
-                  src: <VectorIcon family={MaterialIcons} name="info" />,
+                  src: <VectorIcon family={MaterialIcons} name="queue" />,
                 },
               })}
             />
           </NativeTabs.Trigger>
         </NativeTabs>
       )}
+      </GamesProvider>
     </ThemeProvider>
   );
 }
