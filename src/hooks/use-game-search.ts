@@ -3,7 +3,7 @@ import { RAWGGame } from "@/types/game";
 
 // Get your free API key from https://rawg.io/apidocs
 // Free tier includes 20,000 requests per month
-const RAWG_API_KEY = "YOUR_API_KEY_HERE";
+const RAWG_API_KEY = "b19e11c0190048c5866734bb19fbcfaa";
 const RAWG_BASE_URL = "https://api.rawg.io/api";
 
 export function useGameSearch() {
@@ -13,12 +13,6 @@ export function useGameSearch() {
 
   const searchGames = useCallback(async (query: string) => {
     if (!query.trim()) {
-      setResults([]);
-      return;
-    }
-
-    if (RAWG_API_KEY === "YOUR_API_KEY_HERE") {
-      setError("API key not configured");
       setResults([]);
       return;
     }
