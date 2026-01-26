@@ -1,4 +1,5 @@
 import { View, Text, Pressable } from "react-native";
+import { Image } from "expo-image";
 import * as AC from "@bacons/apple-colors";
 import { Game } from "@/types/game";
 
@@ -24,48 +25,68 @@ export function GameCard({
         backgroundColor: AC.secondarySystemGroupedBackground,
         borderRadius: 12,
         borderCurve: "continuous",
-        padding: 16,
+        padding: 12,
         marginBottom: 12,
         opacity: pressed ? 0.7 : 1,
         boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
       })}
     >
-      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start" }}>
-        <View style={{ flex: 1 }}>
-          <Text
+      <View style={{ flexDirection: "row", gap: 12, alignItems: "flex-start" }}>
+        {game.coverImage && (
+          <View
             style={{
-              fontSize: 17,
-              fontWeight: "600",
-              color: AC.label,
-              marginBottom: 4,
+              borderRadius: 8,
+              borderCurve: "continuous",
+              overflow: "hidden",
             }}
-            selectable
           >
-            {game.title}
-          </Text>
-          {game.platform && (
+            <Image
+              source={{ uri: game.coverImage }}
+              style={{
+                width: 80,
+                height: 80,
+              }}
+              contentFit="cover"
+            />
+          </View>
+        )}
+        <View style={{ flex: 1, justifyContent: "space-between" }}>
+          <View>
             <Text
               style={{
-                fontSize: 15,
-                color: AC.secondaryLabel,
+                fontSize: 17,
+                fontWeight: "600",
+                color: AC.label,
                 marginBottom: 4,
               }}
               selectable
             >
-              {game.platform}
+              {game.title}
             </Text>
-          )}
-          {game.status === "played" && game.rating && (
-            <Text
-              style={{
-                fontSize: 15,
-                color: AC.secondaryLabel,
-              }}
-              selectable
-            >
-              {"★".repeat(game.rating)}{"☆".repeat(5 - game.rating)}
-            </Text>
-          )}
+            {game.platform && (
+              <Text
+                style={{
+                  fontSize: 15,
+                  color: AC.secondaryLabel,
+                  marginBottom: 4,
+                }}
+                selectable
+              >
+                {game.platform}
+              </Text>
+            )}
+            {game.status === "played" && game.rating && (
+              <Text
+                style={{
+                  fontSize: 15,
+                  color: AC.secondaryLabel,
+                }}
+                selectable
+              >
+                {"★".repeat(game.rating)}{"☆".repeat(5 - game.rating)}
+              </Text>
+            )}
+          </View>
         </View>
         <View
           style={{
