@@ -71,7 +71,7 @@ export default function LibraryRoute() {
                 style={{
                   fontSize: 15,
                   color: AC.secondaryLabel,
-                  fontVariant: "tabular-nums",
+                  fontVariant: ["tabular-nums"],
                 }}
                 selectable
               >
