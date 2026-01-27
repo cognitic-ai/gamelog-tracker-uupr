@@ -39,6 +39,10 @@ export default function Layout() {
         options={{ title: "Backlog", headerLargeTitle: true }}
       />
       <Stack.Screen
+        name="[id]"
+        options={{ title: "Game Details" }}
+      />
+      <Stack.Screen
         name="add-game"
         options={{ presentation: "modal", title: "Add Game" }}
       />

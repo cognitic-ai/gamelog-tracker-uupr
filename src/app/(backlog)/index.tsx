@@ -103,8 +103,7 @@ export default function BacklogRoute() {
               <GameCard
                 key={game.id}
                 game={game}
-                onMoveToPlayed={() => moveToPlayed(game.id)}
-                onDelete={() => deleteGame(game.id)}
+                onPress={() => router.push(`/(backlog)/${game.id}`)}
               />
             ))}
           </>

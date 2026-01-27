@@ -103,8 +103,7 @@ export default function LibraryRoute() {
               <GameCard
                 key={game.id}
                 game={game}
-                onMoveToBacklog={() => moveToBacklog(game.id)}
-                onDelete={() => deleteGame(game.id)}
+                onPress={() => router.push(`/(library)/${game.id}`)}
               />
             ))}
           </>
