@@ -10,6 +10,8 @@ const SAMPLE_GAMES: Game[] = [
     rating: 5,
     dateAdded: Date.now() - 30 * 24 * 60 * 60 * 1000,
     dateCompleted: Date.now() - 15 * 24 * 60 * 60 * 1000,
+    coverImage: "https://media.rawg.io/media/games/cc1/cc196a5ad763955d6532cdba236f730c.jpg",
+    rawgId: 22511,
   },
   {
     id: "2",
@@ -17,6 +19,8 @@ const SAMPLE_GAMES: Game[] = [
     platform: "PlayStation 5",
     status: "backlog",
     dateAdded: Date.now() - 10 * 24 * 60 * 60 * 1000,
+    coverImage: "https://media.rawg.io/media/games/5ec/5ecac5cb026ec26a56efcc546364e348.jpg",
+    rawgId: 326243,
   },
   {
     id: "3",
@@ -26,6 +30,8 @@ const SAMPLE_GAMES: Game[] = [
     rating: 5,
     dateAdded: Date.now() - 60 * 24 * 60 * 60 * 1000,
     dateCompleted: Date.now() - 45 * 24 * 60 * 60 * 1000,
+    coverImage: "https://media.rawg.io/media/games/4cf/4cfc6b7f1850590a4634b08bfab308ab.jpg",
+    rawgId: 41494,
   },
   {
     id: "4",
@@ -33,6 +39,8 @@ const SAMPLE_GAMES: Game[] = [
     platform: "PC",
     status: "backlog",
     dateAdded: Date.now() - 5 * 24 * 60 * 60 * 1000,
+    coverImage: "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg",
+    rawgId: 41494,
   },
 ];
 
