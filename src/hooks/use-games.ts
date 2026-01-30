@@ -1,5 +1,7 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Game, GameStatus } from "@/types/game";
+import { getGames, saveGames } from "@/utils/storage";
+import { useUserContext } from "@/contexts/user-context";
 
 const SAMPLE_GAMES: Game[] = [
   {
@@ -45,7 +47,41 @@ const SAMPLE_GAMES: Game[] = [
 ];
 
 export function useGames() {
-  const [games, setGames] = useState<Game[]>(SAMPLE_GAMES);
+  const { currentUser } = useUserContext();
+  const [games, setGames] = useState<Game[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Load games from storage when user changes
+  useEffect(() => {
+    const loadGames = async () => {
+      if (!currentUser) {
+        setGames([]);
+        setLoading(false);
+        return;
+      }
+
+      setLoading(true);
+      const loadedGames = await getGames(currentUser.id);
+
+      // If no games, load sample games for the first time
+      if (loadedGames.length === 0) {
+        setGames(SAMPLE_GAMES);
+        await saveGames(currentUser.id, SAMPLE_GAMES);
+      } else {
+        setGames(loadedGames);
+      }
+      setLoading(false);
+    };
+
+    loadGames();
+  }, [currentUser]);
+
+  // Save games to storage whenever they change
+  useEffect(() => {
+    if (currentUser && !loading) {
+      saveGames(currentUser.id, games);
+    }
+  }, [games, currentUser, loading]);
 
   const addGame = useCallback((game: Omit<Game, "id" | "dateAdded">) => {
     const newGame: Game = {
@@ -98,5 +134,6 @@ export function useGames() {
     deleteGame,
     moveToBacklog,
     moveToPlayed,
+    loading,
   };
 }

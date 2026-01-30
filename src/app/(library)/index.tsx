@@ -3,10 +3,12 @@ import { useRouter } from "expo-router";
 import * as AC from "@bacons/apple-colors";
 import { GameCard } from "@/components/game-card";
 import { useGamesContext } from "@/contexts/games-context";
+import { useUserContext } from "@/contexts/user-context";
 
 export default function LibraryRoute() {
   const router = useRouter();
-  const { playedGames, moveToBacklog, deleteGame } = useGamesContext();
+  const { playedGames } = useGamesContext();
+  const { currentUser } = useUserContext();
 
   return (
     <ScrollView
@@ -17,17 +19,46 @@ export default function LibraryRoute() {
       }}
     >
       <View style={{ padding: 16 }}>
-        <Text
+        <View
           style={{
-            fontSize: 34,
-            fontWeight: "700",
-            color: AC.label,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
             marginBottom: 16,
             marginTop: 8,
           }}
         >
-          Library
-        </Text>
+          <Text
+            style={{
+              fontSize: 34,
+              fontWeight: "700",
+              color: AC.label,
+            }}
+          >
+            Library
+          </Text>
+          <Pressable
+            onPress={() => router.push("/users")}
+            style={({ pressed }) => ({
+              backgroundColor: AC.secondarySystemGroupedBackground,
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+              borderRadius: 20,
+              borderCurve: "continuous",
+              opacity: pressed ? 0.7 : 1,
+            })}
+          >
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "600",
+                color: AC.systemBlue,
+              }}
+            >
+              {currentUser?.name || "User"}
+            </Text>
+          </Pressable>
+        </View>
         {playedGames.length === 0 ? (
           <View
             style={{

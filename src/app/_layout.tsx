@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { GamesProvider } from "@/contexts/games-context";
+import { UserProvider } from "@/contexts/user-context";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Tabs as WebTabs } from "expo-router/tabs";
 import { NativeTabs } from "expo-router/unstable-native-tabs";
@@ -13,8 +14,9 @@ export default function Layout() {
 
   return (
     <ThemeProvider>
-      <GamesProvider>
-      {process.env.EXPO_OS === "web" ? (
+      <UserProvider>
+        <GamesProvider>
+          {process.env.EXPO_OS === "web" ? (
         <WebTabs
           screenOptions={{
             headerShown: false,
@@ -56,7 +58,8 @@ export default function Layout() {
           </NativeTabs.Trigger>
         </NativeTabs>
       )}
-      </GamesProvider>
+        </GamesProvider>
+      </UserProvider>
     </ThemeProvider>
   );
 }
