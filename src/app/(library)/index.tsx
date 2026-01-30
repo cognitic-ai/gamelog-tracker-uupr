@@ -17,6 +17,17 @@ export default function LibraryRoute() {
       }}
     >
       <View style={{ padding: 16 }}>
+        <Text
+          style={{
+            fontSize: 34,
+            fontWeight: "700",
+            color: AC.label,
+            marginBottom: 16,
+            marginTop: 8,
+          }}
+        >
+          Library
+        </Text>
         {playedGames.length === 0 ? (
           <View
             style={{

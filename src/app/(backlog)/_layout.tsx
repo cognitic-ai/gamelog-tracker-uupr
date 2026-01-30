@@ -36,7 +36,7 @@ export default function Layout() {
     <Stack screenOptions={AppleStackPreset}>
       <Stack.Screen
         name="index"
-        options={{ title: "Backlog", headerLargeTitle: true }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="[id]"

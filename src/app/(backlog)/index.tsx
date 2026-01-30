@@ -17,6 +17,17 @@ export default function BacklogRoute() {
       }}
     >
       <View style={{ padding: 16 }}>
+        <Text
+          style={{
+            fontSize: 34,
+            fontWeight: "700",
+            color: AC.label,
+            marginBottom: 16,
+            marginTop: 8,
+          }}
+        >
+          Backlog
+        </Text>
         {backlogGames.length === 0 ? (
           <View
             style={{
