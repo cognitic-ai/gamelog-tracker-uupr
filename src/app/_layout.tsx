@@ -45,6 +45,18 @@ export default function Layout() {
               tabBarIcon: (props) => <MaterialIcons {...props} name="queue" />,
             }}
           />
+          <WebTabs.Screen
+            name="index"
+            options={{
+              href: null,
+            }}
+          />
+          <WebTabs.Screen
+            name="users"
+            options={{
+              href: null,
+            }}
+          />
         </WebTabs>
       ) : (
         <NativeTabs>
